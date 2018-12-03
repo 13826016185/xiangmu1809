@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="../css/base.css" />
+        <link rel="stylesheet" type="text/css" href="../css/denglu.css" />
+        <script type="text/javascript" src="../js/common.js"></script>
+    </head>
+    <body>
+
+        <div  id="header">
+            
+                <h2>
+                    <a href="#">奥莱购</a>
+                </h2>
+
+                <span>
+                <img src="../img/z1.png" alt="" />
+
+                        </span>
+
+        </div>
+        <div  id="connet">
+            
+            <div id="con1">
+                <img src="../img/dl1.jpg" alt="" />
+
+
+
+            </div>
+            <div id="con2">
+
+  
+                
+         <div id="con22">
+                
+                    <div id="con22-1">
+                        <span>
+                        <a href="">立即注册</a>
+                        </span>
+                        <span class="img11">
+                        <img src="../img/dl3.png" alt="" />
+
+                         <div id="footerc">
+                这个是手机登录二维码
+                </div>
+
+                        </span>
+
+                   </div> 
+                    
+
+
+                    <form action="">
+                <div  id="con22-2">
+               <label class="label">登录账号</label>
+                <input id="phone" name="phone" type="text" class="roundedCorners-textbox" placeholder="请输入手机号码" value=""/>
+                <span id="inf1"></span><br /><br />  
+
+                <label class="label">输入密码</label>
+                <input id="password" name="password" type="password" class="roundedCorners-textbox" placeholder="请输入密码" value=""/>
+                <span id="inf2"></span><br /><br />
+                
+                  <input type="checkbox" class="checkbox" id="retain"/>
+                <label>记住密码</label>
+                <a href="" id="wangji">忘记密码？</a>
+                <br/><br/>
+               
+                <input type="button" value="登录" id="btn" /><br /><br />
+                <p>
+                    <img src="../img/dl2.png" alt="" />
+                </p>
+         
+
+                </div>        
+
+                    </form>
+  
+
+
+
+
+            </div>
+
+               <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript">
+     
+        document.addEventListener('DOMContentLoaded',function(){
+            
+            var username=document.querySelector('#phone');
+            var usninf=document.querySelector('#inf1');
+            var isok=false;
+            var btn=document.querySelector('#btn');
+            var psw=document.querySelector('#password');
+            var retain=document.querySelector('#retain');
+            
+             
+            
+            //验证用户名是否存在：不存在才能注册
+            username.onblur=function(){
+                var val=username.value.trim();//获取内容
+           
+
+                var xhr=new XMLHttpRequest();
+                var url=`../api/checkname.php?username=${val}&time=${new Date()}`;
+                xhr.open('GET',url,true);
+                xhr.send();
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState==4 && xhr.status==200){
+                        var str=xhr.responseText;
+                       
+                        if(str=='0'){
+                            usninf.innerHTML='用户名正确';
+                            usninf.style.color='green';
+                             isok=true;
+
+                        }else{
+                           
+                            usninf.innerHTML='用户名不存在';
+                            usninf.style.color='red';
+                           
+                        }
+                    }
+                }
+
+              
+            }
+
+
+
+
+            
+            btn.onclick=function(){
+                
+                var valName=username.value.trim();
+                var valPsw=psw.value.trim();
+
+                var xhr=new XMLHttpRequest();
+                var url=`../api/reg2.php?psw=${valPsw}&username=${valName}&time=${new Date()}`;
+                xhr.open('GET',url,true);
+                xhr.send();
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState==4 && xhr.status==200){
+                        var str=xhr.responseText;
+                             if(str=='0'){
+                           alert('确定登录首页吗？');
+
+                           location.href="../shouye.html";
+                       }else{
+                        alert('密码错误')
+                       }
+
+                   }}
+            
+            }
+
+         // 保存用户名：
+            retain.onclick=function(){
+                    var val1=username.value;
+                    var val21=psw.value;
+                    var now=new Date();
+                    now.setDate(now.getDate()+7);
+                    Cookie.set('name',val1,{'expires':now,path:'/'});
+                    Cookie.set('psw',val21,{'expires':now,path:'/'});
+                }
+                
+            var name=Cookie.get('name');
+            var pwdval1=Cookie.get('psw');
+            username.value=name;
+            psw.value=pwdval1;
+
+     
+
+            
+        });
+        
+    </script>
+
+
+        </div>
+        <div  id="footer">
+            
+
+
+            <div id="footer3-1">
+                
+                <ul id="footer3-2">
+                    <li>
+                     <a href="#">关于奥莱购</a>
+                     <span>|</span>
+                        <a href="#">联系我们</a>
+                        <span>|</span>
+                        <a href="#">诚聘英才</a>
+                       <span>|</span> <a href="#">商务合作</a>
+                       <span>|</span> <a href="#">友情链接</a>
+                       <span>|</span> <a href="#">华南成网</a>
+                       <span>|</span> <a href="#">华盛网有</a>   
+
+
+
+
+                    </li>
+                    <li>
+                        
+                        Copyright © 2013-2016 深圳华盛电子商务有限公司 粤ICP备16081451-1号 All Right 
+                    </li>
+                    <li>
+                        深圳市龙岗区平湖华南城1号交易广场4楼奥莱购（深圳华盛电子商务有限公司）
+                    </li>
+
+                <li>
+                    <img src="../img/c3.png" alt="" />
+                </li>
+                  
+                </ul>
+
+
+
+            </div>
+
+
+
+
+    </div>
+   
+        
+
+
+
+    </body>
+</html>

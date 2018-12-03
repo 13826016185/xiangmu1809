@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" type="text/css" href="../css/base.css" />
+        <link rel="stylesheet" type="text/css" href="../css/gouwuche.css" />
+    </head>
+    <body>
+
+      <div id="header">
+           <ul id="ul1">
+               <li id="li1"><a href="#">
+                   奥特莱斯购物中心
+               </a>
+
+
+                <ul id="ul3">
+               <li>
+                   这是我的项目
+               </li>
+               <li>
+                   这是谁的
+               </li>
+               <li>
+                   浪人剑客
+               </li>
+               <li>
+                   第三阶段
+               </li>
+               <li>
+                   啦啦啦啦啦
+               </li>
+               <li>
+                   代码好多啊
+               </li>
+               <li>
+                   我改如何规划
+               </li>
+               <li>
+                   这就是这样了
+               </li>
+           </ul>
+
+
+
+
+
+
+
+
+
+               </li>
+               <li><a href="#">
+                   商家入驻
+               </a></li>
+           </ul>
+
+           <ul id="ul2">
+               <li>
+                   你好，欢迎来到奥特莱斯。
+               </li>
+               <li><a href="">
+                   请登录
+               </a></li>
+               <li><a href="">
+                   免费注册
+               </a></li>
+               <li><a href="">
+              <i d="gw"></i>  购物车 <span>n</span>
+               </a></li>
+               <li><a href="">
+                   订单查询
+               </a></li>
+               <li><a href="">
+                   我的收藏
+               </a></li>
+               <li><a href="">
+                   帮助中心
+               </a></li>
+           </ul>
+
+   
+
+         </div>
+
+
+
+
+
+
+
+         <div id="search">
+             <h1><a href="#">奥莱购</a></h1>
+
+
+            <form action="#">
+                <input type="text" value="guugi"
+                 placeholder="请输入您想购买的商品名称" class="input1" id="input"/>
+                <input type="button" value="搜索" class="input2" />
+            </form>
+            <ul id="ulxl">
+            <li>地下城与勇士</li>
+            <li>魔兽世界（国服）</li>
+            <li>魔兽世界（台服）</li>
+            <li>热血江湖</li>
+            <li>大话西游II</li>
+            <li>QQ幻想世界</li>
+        </ul>
+        <script type="text/javascript">
+
+        window.onload=function(){
+            var input=document.getElementById('input');
+            var ulxl=document.getElementById('ulxl');
+
+             input.onfocus = function(){
+               
+                ulxl.style.display = 'block';
+             }
+
+             input.onblur = function(){
+             
+                ulxl.style.display = 'none';
+             }
+
+        }
+
+
+        </script>
+
+         </div>
+
+<!-- g购物车内容部分 -->
+
+
+
+<div id="connet">
+
+      <div id="biaotou">
+        <strong>
+        <p id="allnum1">商品清单 ( 0  &nbsp;)</p>
+        </strong>
+      </div>
+  
+      <ul id="cart">
+      <li>
+        <p></p>
+        <p>商品</p>
+        <p style="padding-left: 20px;">单价</p>
+        <p style="padding-left: 48px;">数量</p>
+
+       <!--  <p style="padding-left: 30px;">优惠</p> -->
+        <p style="padding-left: 28px;">小计</p>
+        <p style="padding-left: 0px;">操作</p>
+
+      
+      </li>
+    <!--   <li>
+        <p class="good_check"><input type="checkbox" name="good" value="" /></p>
+        <p class="good_name">
+        
+        <span id="spans1">
+           <img src="../img/good2.jpg" height="63" width="60" alt="" />
+
+        </span>
+        <span id="spans2">
+          
+          s运动套装休闲吸汗时尚韩版潮流外套12
+        </span>
+
+
+
+
+        </p>
+        <p class="good_price">￥&nbsp;99.99</p>
+        <p class="num">
+          <span class="cutnum">-</span>
+          <input class="nownum" type="text" value="1" />
+          <span class="addnum">+</span>
+        </p>
+       
+        <p class="good_total">￥&nbsp;99.99</p>
+        <p class="good_del">
+          <a href="javascript:;">删除</a>
+        </p>
+
+          <span id="divspan">
+        多买多优惠！全场都是优质产品，买一送零，不包邮不退货不售后。就是这么牛逼。
+        </span>
+      </li> -->
+  
+    </ul>
+
+    <div id="del">
+      <p id="allchecked"><input type="checkbox" name="" id="" value="" />全选</p>
+      <p id="delall">
+        <a href="javascript:;">删除</a>
+      </p>
+      <p id="allnum">已选 0 件商品</p>
+      <p id="totalprice">总计（不含运费）：￥0.00</p>
+
+      <p id="jiesuan">
+      <a href="http://www.taobao.com">
+        <input type="button" value="去结算" /></a>
+      </p>
+    </div>
+
+  
+ <script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    
+  document.addEventListener('DOMContentLoaded',function(){
+       
+
+
+
+     var list=document.getElementById('cart');
+  
+ var xhr=new XMLHttpRequest();
+        var url=`../api/orderCar.php?order=asc&time=new Date()`;
+        xhr.open('GET',url,true);
+        
+  
+        xhr.send();
+
+       
+        
+       
+        xhr.onreadystatechange=function(){
+          if(xhr.readyState==4 && xhr.status==200){
+            var str=xhr.responseText;
+            var arr=JSON.parse(str);
+
+
+
+              var arr1=arr.list;
+
+
+
+            console.log(arr1);
+           
+       for(var i=0;i<arr1.length;i++){
+
+
+              
+  
+          var html=`  <li>
+
+        <p class="good_check"><input type="checkbox" name="good" value="" /></p>
+        <p class="good_name">
+        
+        <span id="spans1">
+           <img src="${arr1[i].imgurl}" height="63" width="60" alt="" />
+
+        </span>
+        <span id="spans2">
+          
+         ${arr1[i].title}
+        </span>
+
+
+
+
+        </p>
+        <p class="good_price">${arr1[i].sale}</p>
+        <p class="num">
+          <span class="cutnum" date-id="${arr1[i].id}">-</span>
+          <input class="nownum" type="text" value="${arr1[i].nums}" />
+          <span class="addnum" date-id="${arr1[i].id}">+</span>
+        </p>
+       
+        <p class="good_total">$${Number(arr1[i].sale.substring(1))*arr1[i].nums}</p>
+        <p class="good_del" >
+          <a href="javascript:;" id="sss" date-id="${arr1[i].id}">删除</a>
+        </p>
+
+          <span id="divspan">
+        多买多优惠！全场都是优质产品，买一送零，不包邮不退货不售后。就是这么牛逼。
+        </span>
+      </li>`;
+
+
+      list.innerHTML+=html;
+
+
+      
+
+// 删除
+    
+        var aLis=list.getElementsByTagName('a');
+
+       
+      
+              n();
+       function n(){
+       for(var i=0;i<aLis.length;i++){
+        aLis[i].onclick=function(){
+        
+
+            console.log(this.getAttribute('date-id'));
+
+           var idd=this.getAttribute('date-id');
+
+           var url=`../api/orderCarDelete.php?id=${idd}&time=new Date()`;
+          xhr.open('GET',url,true);
+          xhr.send();
+          xhr.onreadystatechange=function(){
+              if(xhr.readyState==4 && xhr.status==200){
+                var str=xhr.responseText;
+
+                console.log(str);}}
+              
+          
+        }
+       }
+       }
+   
+       // 这个是修改数据库数量的。
+    
+
+
+  var liss=list.getElementsByClassName('addnum');
+
+nnn();
+
+
+function nnn(){
+
+ for(var i=0;i<liss.length;i++){
+
+  liss[i].onclick=function(){
+
+      var nu=1;
+
+      var numm1=this.parentNode.getElementsByTagName('input')[0].value;
+
+      var numm=Number(numm1)+Number(nu);
+
+
+   var idd2=this.getAttribute('date-id');
+  
+    console.log(numm);
+
+
+        var url=`../api/orderCarNum.php?id=${idd2}&nums=${numm}&time=new Date()`;
+          xhr.open('GET',url,true);
+          xhr.send();
+          xhr.onreadystatechange=function(){
+              if(xhr.readyState==4 && xhr.status==200){
+            var str=xhr.responseText;
+
+                console.log(str);}}
+       
+      
+     
+          }}
+      
+
+}
+
+            var lis=list.getElementsByClassName('cutnum');
+
+nnn1();
+
+
+function nnn1(){
+
+ for(var i=0;i<lis.length;i++){
+
+  lis[i].onclick=function(){
+
+      var nu=1;
+      var numm1=this.parentNode.getElementsByTagName('input')[0].value;
+
+      var numm=Number(numm1)-Number(nu);
+
+
+   var idd2=this.getAttribute('date-id');
+  
+    console.log(numm);
+
+
+        var url=`../api/orderCarNum.php?id=${idd2}&nums=${numm}&time=new Date()`;
+          xhr.open('GET',url,true);
+          xhr.send();
+          xhr.onreadystatechange=function(){
+              if(xhr.readyState==4 && xhr.status==200){
+            var str=xhr.responseText;
+
+                console.log(str);}}
+       
+      
+     
+          }}
+      
+
+}
+
+
+// 数据的小计
+// 
+
+
+
+
+          }
+        }}
+
+
+
+});
+
+
+
+
+
+
+</script>
+
+<script src="../js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/cart.js" type="text/javascript" charset="utf-8"></script>
+
+
+</div>
+
+
+
+<!-- 底部 -->
+
+   <div id="footer">
+             
+
+    <div  id="footer1">
+        <img src="../img/a3.png" alt="" />
+    </div>
+    <div  id="footer2">
+        
+        <div class="f1">
+            
+            <ul id="ulf1">
+                <li>
+                    <span>
+                        <img src="../img/a4.png" alt="" />
+                    </span>
+                    <span  class="img1">
+                        <img src="../img/a5.png" alt="" />
+                <!-- 二维码图片 -->
+                <div id="footerc">
+                这个是二维码，你看着想像一下
+                </div>
+
+
+
+                    </span>
+                </li>
+                <li>
+                    <p>客服热线：020-202-88888</p>
+                    <p class="p1">2897-3893-75</p>
+                </li>
+                <li>
+                    
+                    <p>周一到周五：09:00-22；00</p>
+                </li>
+            </ul>
+
+        </div>
+        <div class="f2">
+            
+            <ul id="ff2">
+                <li>
+                    <ul id="ff2-1">
+                        <li>购物指南</li>
+                        <li>
+                            <a href="#">购物流程</a>
+                        </li>
+                        <li>
+                            <a href="#">用户注册</a>
+                        </li>
+                        <li>
+                            
+                            <a href="#">用户登录</a>
+                        </li>
+                        <li>
+                            <a href="#">找回密码</a>
+                        </li>
+                        <li>
+                            <a href="#">常见问题</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    
+                     <ul id="ff2-1">
+                        <li>支付方式</li>
+                        <li>
+                            <a href="#">支付流程</a>
+                        </li>
+                        <li>
+                            <a href="#">用户注册</a>
+                        </li>
+                        <li>
+                            
+                            <a href="#">用户登录</a>
+                        </li>
+                      
+                          
+                    </ul>
+                </li>
+                <li>
+                     <ul id="ff2-1">
+                        <li>配送方式</li>
+                        <li>
+                            <a href="#">购物流程</a>
+                        </li>
+                        <li>
+                            <a href="#">用户注册</a>
+                        </li>
+                       
+                        <li>
+                            <a href="#">找回密码</a>
+                        </li>
+                        <li>
+                            <a href="#">常见问题</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    
+                     <ul id="ff2-1">
+                        <li>售后方式</li>
+                        <li>
+                            <a href="#">购物流程</a>
+                        </li>
+                        <li>
+                            <a href="#">用户注册</a>
+                        </li>
+                        <li>
+                            
+                            <a href="#">用户登录</a>
+                        </li>
+                        <li>
+                            <a href="#">找回密码</a>
+                        </li>
+                        <li>
+                            <a href="#">常见问题</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+
+        </div>
+        <div class="f3">
+            
+            <img src="../img/c.jpg" alt="" />
+        </div>
+
+
+
+
+    </div>
+    <div  id="footer3">
+        
+            <div id="footer3-1">
+                
+                <ul id="footer3-2">
+                    <li>
+                     <a href="#">关于奥莱购</a>
+                     <span>|</span>
+                        <a href="#">联系我们</a>
+                        <span>|</span>
+                        <a href="#">诚聘英才</a>
+                       <span>|</span> <a href="#">商务合作</a>
+                       <span>|</span> <a href="#">友情链接</a>
+                       <span>|</span> <a href="#">华南成网</a>
+                       <span>|</span> <a href="#">华盛网有</a>   
+
+
+
+
+                    </li>
+                    <li>
+                        
+                        Copyright © 2013-2016 深圳华盛电子商务有限公司 粤ICP备16081451-1号 All Right 
+                    </li>
+                    <li>
+                        深圳市龙岗区平湖华南城1号交易广场4楼奥莱购（深圳华盛电子商务有限公司）
+                    </li>
+                    <li>
+                        <img src="../img/c2.png" alt="" />
+                    </li>
+                </ul>
+
+
+
+            </div>
+
+
+
+
+    </div>
+    <div  id="footer4">
+        <img src="../img/c3.png" alt="" />
+    </div>
+
+
+
+
+         </div>
+
+
+
+
+    </body>
+</html>
